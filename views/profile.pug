@@ -1,0 +1,82 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous")
+	title Profile
+	style
+		include pug.css
+	body
+		include navbar.pug
+
+		h1 Welcome: #{user.username} 
+		p
+			a(href="/postmessage" class="links") Post a new message? 
+		h1 Messages
+		each message in messages
+			p  
+			br 
+			| Title: #{message.title}
+			br
+			| Message: #{message.message}
+
+		script.
+			$(document).ready(function() {
+				console.log ("Ready")
+				 $('form').on('submit', function(e){
+					var peter = $("#searchBar").val()			    
+			      e.preventDefault(); /*prevents default of the form*/
+			      console.log("cheeeeck")
+				   $.ajax({ /*AJAX for event popup, sends to activityList POST route*/
+						type: "POST",
+						url:"/event/activityList",
+						data:  {searchData: peter},
+						success: function(result){ /*only if city matches DB 'city, it shows activities table'*/
+							console.log("yeeeeea") /*when reached success, Ajax loads */	
+							$.each(result, function(index, value){
+								//console.log("values: " + value)
+								$("#search").append(`<p>${value.activity}<p>`)
+								$("#search").append(`<p>${value.meetpoint}<p>`)
+								$("#search").append(`<p>${value.date}<p>`)
+								$("#search").append(`<p>${value.time}<p>`)
+
+								/*shows data from dB*/
+							})			
+						},
+						error: function(error){
+							console.log("errorrrr", error)
+						}	
+					})
+				  });			
+				if (true){
+					timeOut =Date.now()
+					$("#searchBar").keyup(function(e) {
+					var peter = $("#searchBar").val()				
+					console.log(e.which)
+						if (e.which == 13){
+							console.log("Press Enter" + e.which)
+							
+						}
+						else if (peter.length > 0) {
+							console.log("It works:" + peter)
+							$.ajax({ /*AJAX for searchbar cities*/
+								type: "POST",
+								url: "/",
+								data: {searchData: peter},
+								dataType: "json",
+								success: function(result){
+
+									$( "#searchBar" ).autocomplete({
+
+										source: result.search
+									})
+								},
+								error: function(err){
+									console.log(err)
+								}
+
+							})//ajax2
+						}//elseif
+					})//keyup
+				}//timeout
+			})

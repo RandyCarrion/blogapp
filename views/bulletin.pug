@@ -1,0 +1,28 @@
+html
+	head
+		script(type="text/javascript" src="index.js")
+		script(src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous")
+	title Blog
+	style
+		include pug.css
+	body
+		include navbar.pug
+
+		h1 Welcome: #{user.username}
+		p
+			a(href="/postmessage" class="links") Post a new message? 
+		h1 Messages
+		each message in messages
+			p  
+			br 
+			| Title: #{message.title}
+			br
+			| Message: #{message.message}   
+
+		//- 	#HCB_comment_box
+		
+		//- link(rel='stylesheet', type='text/css', href='//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0')
+		//- script#hcb(type='text/javascript').
+		//- 	/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10&ts=1513769622653");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/

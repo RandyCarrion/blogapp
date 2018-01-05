@@ -1,0 +1,44 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous")
+	title signup
+	style
+		include pug.css
+	body
+		include navbar.pug
+		h1 Welcome, new user. 
+		h2 Please sign up to send a message:
+		form(class="forms" method="POST" action="/signup")
+			br
+			|
+			p Enter a Username: 
+			input(type="text" placeholder="Username" name="username")
+			br
+			|
+			p Enter an email address: 
+			input(type="email" placeholder="Email" name="email")
+			br
+			|
+			p Enter a password: 
+			input(type="password" placeholder="Password" id="password" name="password")
+			br
+			|
+			p Confirm password: 
+			input(type="password" placeholder="Confirm password" id="password2" name="password2")
+			br
+			input(type="submit" value="Signup!")
+		script.
+			$(document).ready(function() {
+				$(".forms").submit(function(event){
+					const pass = $("#password").val()
+					console.log(pass) 
+					const passCheck = $("#password2").val()
+					console.log(passCheck) 
+					if(pass !== passCheck) {
+						event.preventDefault()
+						alert("Password does not match")
+					}
+				})
+			})

@@ -1,0 +1,19 @@
+html
+	head
+		title Login
+		style
+			include pug.css
+		body
+			include navbar.pug
+			h1 Log in to see the posts. 
+			form(class="forms" method="POST" action="/login")
+				br
+				|
+				input(type="text" placeholder="username" name="username") 
+				br
+				|
+				input(type="password" placeholder="password" name="password")
+				br
+				input(type="submit" value="Login!")
+
+			

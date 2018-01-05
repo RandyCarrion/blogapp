@@ -1,0 +1,23 @@
+nav
+	ul
+		li.nav
+			a(href="/" class="links") Home
+		li.nav
+			if (user)
+				a(href="/profile" class="links") #{user.username}
+		li.nav
+			if (!user)
+				a(href="/signup" class="links") Sign Up!
+		li.nav
+			if (!user)
+				a(href="/login" class="links") Log in
+		li.nav
+			if (user)
+				a(href="/bulletin" class="links") See Bulletin
+		li.nav
+			if (user)
+				a(href="/postmessage" class="links") Post your message!	
+		li.nav
+			if (user)
+				form(class="forms" method="POST" action="/logout")
+					button(type='submit') Logout

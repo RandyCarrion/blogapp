@@ -1,0 +1,24 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous")
+	title Home	
+	style
+		include pug.css
+	body
+		include navbar.pug
+
+		h1 Welcome
+		h3 Log in to see the messages
+		p
+			ul
+				li.nav
+					if (!user)
+						a(href="/login" class="links") Log in
+				li.nav
+					if (!user)
+						a(href="/signup" class="links") Sign up
+				li.nav
+					if (user)
+						a(href="/logout" class="links") Log out

@@ -1,0 +1,17 @@
+html
+	head
+		title Post your message
+		style
+			include pug.css
+		body
+			include navbar.pug
+			h1 Welcome: #{user.username}
+			h1 What is your message:
+			form(class="forms" method="POST" action="/postmessage")
+				input(type="text" placeholder="Title" name="title") 
+				br
+				br
+				textarea(row="10" column="25" type="text" placeholder="Message" name="message")
+				br
+				br
+				input(type="submit" value="send!")
