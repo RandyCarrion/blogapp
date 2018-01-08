@@ -163,6 +163,6 @@ app.get("/profile", (req, res) => {
 })
 
 /*--------connect to your localhost---------*/
-app.listen(3000, function() {
-    console.log("yuurr")
+app.listen(process.env.webport, function() {
+    console.log("Listening on port", process.env.webport)
 })
